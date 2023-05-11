@@ -1,10 +1,5 @@
 import {Injectable} from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor, HttpErrorResponse
-} from '@angular/common/http';
+import {HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {catchError, Observable, switchMap, throwError} from 'rxjs';
 import {AuthService} from "./services";
 import {MatDialog} from "@angular/material/dialog";
@@ -12,9 +7,9 @@ import {Router} from "@angular/router";
 
 @Injectable()
 export class MainInterceptor implements HttpInterceptor {
-  isRefreshing:boolean = false;
+  isRefreshing: boolean = false;
 
-  constructor(private authService: AuthService, private dialog:MatDialog, private router:Router) {
+  constructor(private authService: AuthService, private dialog: MatDialog, private router: Router) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
@@ -29,7 +24,7 @@ export class MainInterceptor implements HttpInterceptor {
           return this.handle401Error(request, next);
         }
 
-        return throwError(()=> res)
+        return throwError(() => res)
       })
     );
   }
@@ -55,7 +50,7 @@ export class MainInterceptor implements HttpInterceptor {
           this.authService.deleteTokens()
           this.dialog.closeAll()
           this.router.navigate(['/login'])
-          return throwError(()=> new Error('token invalid or expired'))
+          return throwError(() => new Error('token invalid or expired'))
 
         })
       )

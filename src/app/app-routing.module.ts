@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {LoginComponent, PostFormComponent, PostsComponent, RegisterComponent} from './components';
+import {LoginComponent, PostsComponent, RegisterComponent} from './components';
 import {MainLayoutComponent} from "./layouts";
 import {AuthGuard} from "./guards";
 import {PostResolver} from "./services";

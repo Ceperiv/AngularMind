@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 import {AuthService, UserService} from "../../services";
 import {IRole, IUser} from "../../interfaces";
-import {ActivatedRoute, Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -15,8 +15,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   constructor(public authService: AuthService,
               private userService: UserService,
-              private router:Router,
-              private activatedRoute:ActivatedRoute) {
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
   };
 
   ngOnInit(): void {
@@ -32,5 +32,5 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
     this.activatedRoute.url.subscribe(value => console.log(value))
 
-}
+  }
 }

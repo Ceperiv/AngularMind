@@ -4,7 +4,6 @@ import {MatDialogRef} from "@angular/material/dialog";
 import {Router} from "@angular/router";
 
 import {AuthService, UserService} from "../../services";
-import {Dialog, DialogRef} from "@angular/cdk/dialog";
 
 @Component({
   selector: 'app-login-form',
@@ -13,12 +12,11 @@ import {Dialog, DialogRef} from "@angular/cdk/dialog";
 export class LoginFormComponent {
   form: FormGroup;
   error: string;
-  dialog:any
+  dialog: any
 
   constructor(private authService: AuthService,
               private dialogRef: MatDialogRef<LoginFormComponent>,
-              private router: Router,
-              private userService: UserService) {
+              private router: Router) {
     this._initForm();
     this.dialog = this.dialogRef
   }

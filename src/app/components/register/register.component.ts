@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {LoginFormComponent} from "../login-form/login-form.component";
+
 import {RegisterFormComponent} from "../register-form/register-form.component";
 
 @Component({
