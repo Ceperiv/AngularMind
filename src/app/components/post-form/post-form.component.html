@@ -1,1 +1,55 @@
-<p>post-form works!</p>
+<form [formGroup]="form">
+  <mat-card>
+    <mat-card-title style="display: flex; justify-content: space-between">
+      {{postForEdit?._id ? 'Коригувати мрію' : 'Занотувати мрію'}}
+      <a style="border-color: white" (click)="dialog.close()" routerLink="/home">
+        <mat-icon>home</mat-icon>
+      </a></mat-card-title>
+    <mat-error *ngIf="error">{{error}}</mat-error>
+    <mat-card-content>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input type="text" matInput formControlName="postName">
+          <mat-error>Max 25 characters</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Author</mat-label>
+          <input type="text" matInput formControlName="author">
+          <mat-error>Max 25 characters</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <quill-editor id='quill'
+                      name="detailEditTxt"
+                      [formControl]="description"
+                      (onEditorCreated)="onEditorCreated($event)"
+        >
+        </quill-editor>
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions class="actions" style=" display: flex; justify-content: flex-end">
+
+      <button mat-raised-button
+              style="margin-right: 15px"
+              color="primary"
+              (click)=" cancel()">
+        Скасувати
+      </button>
+
+      <button [disabled]="form.invalid"
+              mat-raised-button color="primary"
+              (click)="postForEdit?._id ? savePost() : createPost()">
+        {{postForEdit?._id ? 'Зберегти' : 'Створити'}}
+      </button>
+
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+
+

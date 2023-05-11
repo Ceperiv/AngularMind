@@ -1,1 +1,39 @@
-<p>register-form works!</p>
+<form [formGroup]="form">
+  <mat-card>
+    <mat-card-title style="display: flex; justify-content: space-between">Register
+      <a style="border-color: white" (click)="dialog.close()" routerLink="/home">
+        <mat-icon>home</mat-icon>
+      </a></mat-card-title>
+    <mat-error *ngIf="error">{{error}}</mat-error>
+    <mat-card-content>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>User Name</mat-label>
+          <input type="text" matInput formControlName="name">
+          <mat-error>Max 25 characters</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="text" matInput formControlName="email">
+          <mat-error>this field is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password">
+          <mat-error>this field is required</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="actions" style=" display: flex; justify-content: space-between">
+      <a routerLink="/login" (click)="dialog.close()" style="list-style: none">Login</a>
+      <button [disabled]="form.invalid" mat-raised-button color="primary" (click)="register()">Register</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+
+

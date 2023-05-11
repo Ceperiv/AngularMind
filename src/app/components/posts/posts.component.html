@@ -1,1 +1,5 @@
-<p>posts works!</p>
+<mat-accordion>
+<!--  <app-post-form></app-post-form>-->
+  <app-post *ngFor="let post of posts" [post]="post" [isBlocked]="isBlocked"></app-post>
+</mat-accordion>
+<app-footer></app-footer>

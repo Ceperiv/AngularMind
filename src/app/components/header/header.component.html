@@ -1,10 +1,19 @@
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Angular admin</h5>
+<header class="header d-flex flex-column flex-md-row align-items-center p-3 px-md-4 border-bottom shadow-sm">
+    <h5 class="col my-0 mr-md-auto font-weight-normal">
+
+
+        <span class="header_user_name" *ngIf="user">{{user?.name ? user.name : user.email}}
+        <span class="header_user_role">{{role?.role}}</span>
+        </span>
+
+
+    </h5>
     <nav class="my-2 my-md-0 mr-md-3">
-      <a class="p-2 text-dark" [routerLink]="['/']" >Головна</a>
-      <a class="p-2 text-dark" [routerLink]="['/dashboard']">Створити</a>
+      <a class="p-2 text-dark" [routerLink]="['/home']" >Головна</a>
+      <a *ngIf="user" class="p-2 text-dark" [routerLink]="['/createpost']">Створити мрію</a>
       <!-- <a class="p-2 text-dark" href="#">Вийти</a> -->
     </nav>
-    <a class="btn btn-outline-primary mr-3"[routerLink]="['/auth']">Вийти</a>
-    <a class="btn btn-outline-primary mr-3" [routerLink]="['/reg']">Ввійти</a>
-  </div>
+    <a *ngIf="user" class="btn text-dark btn-outline-primary mr-3" (click)="authService.logout()" [routerLink]="['/home']">Вийти</a>
+    <a *ngIf="!user" class="btn text-dark btn-outline-primary mr-3" [routerLink]="['/login']">Увійти</a>
+    <a *ngIf="!user" class="btn text-dark btn-outline-primary mr-3" [routerLink]="['/register']">Зарейструватися</a>
+  </header>

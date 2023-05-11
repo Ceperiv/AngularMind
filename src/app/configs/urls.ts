@@ -22,7 +22,9 @@ const urls = {
     url: role,
   },
   user: {
-    url: users
+    url: users,
+    oneByParams: `${users}/onebyparams`,
+    byToken: `${users}/bytoken`,
   },
 };
 

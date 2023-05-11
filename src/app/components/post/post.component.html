@@ -1,1 +1,29 @@
-<p>post works!</p>
+<mat-expansion-panel (opened)="panelOpenState = true"
+                     (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <span><span style="font-weight: bold">Post Name: </span> <i>{{post.postName}}</i></span>
+    </mat-panel-title>
+    <mat-panel-description>
+      <span *ngIf="panelOpenState;else postInfo">Post Info</span>
+      <!--      Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <div>Author - {{post.author}}</div>
+  <div [innerHTML]="post.description"></div>
+  <div style="width: 100%; display: flex; justify-content: center">
+    <button *ngIf="!isBlocked" [disabled]="isEdit" (click)="editPost()" style="margin-right:30px; border: white; padding: 5px 20px ">Edit post</button>
+  </div>
+
+</mat-expansion-panel>
+
+<ng-template #postInfo>
+  <div style="width: 100%; display: flex; justify-content: space-between"><span><span
+    style="font-weight: bold">Author: </span> {{post.author}}</span>
+    <button *ngIf="!isBlocked" [disabled]="isEdit" (click)="editPost()" style="margin-right:30px; border: white; padding: 5px 20px ">Edit post</button>
+  </div>
+
+</ng-template>
+
+<app-post-create-edit *ngIf="isEdit" [postForEdit]="post"></app-post-create-edit>
+
